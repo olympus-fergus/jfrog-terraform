@@ -8,7 +8,7 @@ resource "artifactory_group" "developers-group" {
   name             = "developers"
   description      = "Developers access groups, for read only access"
   admin_privileges = false
-  auto_join = true
+  auto_join        = true
 }
 
 resource "artifactory_group" "ci-bot-group" {
@@ -19,11 +19,11 @@ resource "artifactory_group" "ci-bot-group" {
 
 # Create a new Artifactory user called terraform
 resource "artifactory_user" "test-user" {
-  name     = "terraform"
-  email    = "fergus.macdermot@gmail.com"
-  groups   = ["${artifactory_group.developers-group.name}"]
-  password = "my super secret password"
-  admin = false
+  name              = "terraform"
+  email             = "fergus.macdermot@gmail.com"
+  groups            = ["${artifactory_group.developers-group.name}"]
+  password          = "my super secret password"
+  admin             = false
   profile_updatable = false
   disable_ui_access = true
 }
