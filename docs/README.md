@@ -1,13 +1,9 @@
 Build status badges
 
-# Project Title
+# Artifactory Terraform Project
 
-Provide an introductory paragraph, describing:
-
-* What your project does
-* Why people should consider using your project
-* Link to project home page
-
+This project sets up JFrog Artifactory repositories, groups, users and permissions.
+Uses the []Atlassian Terraform Provider](https://github.com/atlassian/terraform-provider-artifactory/blob/master/website/docs/index.html.markdown)
 ## Table of Contents
 
 1. [About the Project](#about-the-project)
