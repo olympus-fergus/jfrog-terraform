@@ -41,7 +41,7 @@ resource "artifactory_permission_target" "ci_bot_group_permission" {
   name = "ci-bot-permission"
 
   repo = {
-    repositories     = ["${artifactory_local_repository.mvn_local.key}"]
+    repositories = ["${artifactory_local_repository.mvn_local.key}"]
 
     actions = {
 
