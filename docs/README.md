@@ -69,6 +69,10 @@ Examples should be included
 
 ## Usage
 
+See [groups](https://github.com/atlassian/terraform-provider-artifactory/blob/master/website/docs/r/artifactory_group.html.markdown)
+See [users](https://github.com/atlassian/terraform-provider-artifactory/blob/master/website/docs/r/artifactory_user.html.markdown)
+
+See 
 Instructions for using your project. Ways to run the program, how to include it in another project, etc.
 
 ```
