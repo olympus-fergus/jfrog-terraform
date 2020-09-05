@@ -48,7 +48,7 @@ resource "artifactory_permission_target" "ci_bot_group_permission" {
       groups = [
         {
           name        = "${artifactory_group.ci_bot_group.name}"
-          permissions = ["read", "write"]
+          permissions = ["read", "delete"]
         },
       ]
     }
