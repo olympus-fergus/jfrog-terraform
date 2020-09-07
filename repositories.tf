@@ -32,7 +32,6 @@ resource "artifactory_remote_repository" "docker_remote" {
   package_type                = "docker"
   url                         = "https://registry-1.docker.io/"
   description                 = "Repo for proxy to docker repos"
-  repo_layout_ref             = "docker-default"
   enable_token_authentication = true
 }
 
