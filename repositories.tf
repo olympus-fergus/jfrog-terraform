@@ -38,10 +38,10 @@ resource "artifactory_remote_repository" "docker_remote" {
 
 # Create a new Artifactory remote repository called my-remote
 # https://github.com/atlassian/terraform-provider-artifactory/blob/master/website/docs/r/artifactory_virtual_repository.html.markdown
-resource "artifactory_virtual_repository" "docker-remote" {
-  key                     = "docker-remote"
+resource "artifactory_virtual_repository" "docker_virtual" {
+  key                     = "docker-virtual"
   package_type            = "docker"
-  description             = "External repo for all images to be downloaded from."
+  description             = "Virtual external repo for all images to be downloaded from."
   default_deployment_repo = "${artifactory_local_repository.docker_dev_local.key}"
   repositories = [
     "${artifactory_local_repository.docker_dev_local.key}",
