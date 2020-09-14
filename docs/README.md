@@ -18,8 +18,8 @@ qa should not test dev images
 non-tested images should not be staged
 non-staged, non-tested or dev images should not go to prod
 extreme examples - registry per environment
-https://jfrog.com/shownote/container-promotion-docker-chicago-01-20/
 
+https://jfrog.com/shownote/container-promotion-docker-chicago-01-20/
 ## Table of Contents
 
 1. [About the Project](#about-the-project)
@@ -40,12 +40,19 @@ Based on many years experience in regulated environments, this project uses terr
 
 The following repositories are created
 
-| Repo name      | Repo type | Description
-| ----------- | ----------- | --- |
-| docker-dev-local      | local   | repo for project created binaries |
+| Repo name         | Repo type   | Description | 
+|-------------------| ----------- | ----------- |
+| docker-dev-local  | local       | repo for project created binaries |
 | docker-prod-local      | local   | repo for docker images promoted to prod |
 | docker-remote   | remote        | repo for mirroring other repos |
 | docker-virtual  | virtual |  Aggregates images from local and remote, for single point of entry |
+
+The following Groups and permissions
+
+| Group name      | Repos | Permission | 
+| ----------- | ----------- | --- |
+| ci-build | docker-virtual | write |
+| promote-build | docker-dev-local, docker-prod-local  | write |
 
 virtual repo is the single point of entry
 The each environment looks at the local repo itself
