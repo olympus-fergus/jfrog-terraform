@@ -15,7 +15,7 @@ resource "artifactory_permission_target" "developers_permission" {
   name = "developers-permission"
 
   repo = {
-    repositories     = ["${artifactory_virtual_repository.docker_virtual.key}"]
+    repositories = ["${artifactory_virtual_repository.docker_virtual.key}"]
 
     actions = {
 
