@@ -25,7 +25,7 @@ resource "artifactory_local_repository" "docker_prod_local" {
   max_unique_tags    = 0
 }
 
-# Create a new Artifactory remote repository called my-remote
+# Create a new Artifactory remote repository called docker-remote
 # https://github.com/atlassian/terraform-provider-artifactory/blob/master/website/docs/r/artifactory_remote_repository.html.markdown
 resource "artifactory_remote_repository" "docker_remote" {
   key                         = "docker-remote"
@@ -35,7 +35,7 @@ resource "artifactory_remote_repository" "docker_remote" {
   enable_token_authentication = true
 }
 
-# Create a new Artifactory remote repository called my-remote
+# Create a new Artifactory remote repository called docker-virtual
 # https://github.com/atlassian/terraform-provider-artifactory/blob/master/website/docs/r/artifactory_virtual_repository.html.markdown
 resource "artifactory_virtual_repository" "docker_virtual" {
   key                     = "docker-virtual"
@@ -43,6 +43,7 @@ resource "artifactory_virtual_repository" "docker_virtual" {
   description             = "Virtual external repo for all images to be downloaded from."
   default_deployment_repo = "${artifactory_local_repository.docker_dev_local.key}"
   repositories = [
+    "${artifactory_local_repository.mvn_local.key}",
     "${artifactory_local_repository.docker_dev_local.key}",
     "${artifactory_local_repository.docker_prod_local.key}",
     "${artifactory_remote_repository.docker_remote.key}"
