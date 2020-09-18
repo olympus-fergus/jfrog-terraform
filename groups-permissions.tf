@@ -174,7 +174,7 @@ resource "artifactory_permission_target" "bot_read_docker_prod_local" {
 }
 
 resource "artifactory_permission_target" "bot_promote_docker_to_stg_local" {
-  name = "bot-prmote-docker-to-stg-local"
+  name = "bot-promote-docker-to-stg-local"
 
   repo = {
     repositories = ["${artifactory_local_repository.docker_stg_local.key}"]
@@ -192,7 +192,7 @@ resource "artifactory_permission_target" "bot_promote_docker_to_stg_local" {
 }
 
 resource "artifactory_permission_target" "bot_promote_docker_to_prod_local" {
-  name = "bot-prmote-docker-to-prod-local"
+  name = "bot-promote-docker-to-prod-local"
 
   repo = {
     repositories = ["${artifactory_local_repository.docker_prod_local.key}"]
