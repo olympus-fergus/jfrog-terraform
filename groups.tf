@@ -64,12 +64,12 @@ resource "artifactory_permission_target" "developer_read_docker_all" {
   name = "developer-read-docker-all"
 
   repo = {
-    repositories     = ["${artifactory_local_repository.mvn_local.key}",
+    repositories = ["${artifactory_local_repository.mvn_local.key}",
       "${artifactory_local_repository.docker_dev_local.key}",
       "${artifactory_local_repository.docker_stg_local.key}",
       "${artifactory_local_repository.docker_prod_local.key}",
       "${artifactory_remote_repository.docker_remote.key}",
-      "${artifactory_virtual_repository.docker_virtual.key}",]
+    "${artifactory_virtual_repository.docker_virtual.key}", ]
 
     actions = {
 
@@ -87,7 +87,7 @@ resource "artifactory_permission_target" "bot_deploy_docker_dev_local" {
   name = "bot-deploy-docker-dev-local"
 
   repo = {
-    repositories     = ["${artifactory_local_repository.docker_dev_local.key}"]
+    repositories = ["${artifactory_local_repository.docker_dev_local.key}"]
 
     actions = {
 
@@ -105,7 +105,7 @@ resource "artifactory_permission_target" "bot_download_docker_remote" {
   name = "bot-download-docker-remote"
 
   repo = {
-    repositories     = ["${artifactory_remote_repository.docker_remote.key}"]
+    repositories = ["${artifactory_remote_repository.docker_remote.key}"]
 
     actions = {
 
@@ -123,7 +123,7 @@ resource "artifactory_permission_target" "bot_read_docker_dev_local" {
   name = "bot-read-docker-dev-local"
 
   repo = {
-    repositories     = ["${artifactory_local_repository.docker_dev_local.key}"]
+    repositories = ["${artifactory_local_repository.docker_dev_local.key}"]
 
     actions = {
 
@@ -141,7 +141,7 @@ resource "artifactory_permission_target" "bot_read_docker_stg_local" {
   name = "bot-read-docker-stg-local"
 
   repo = {
-    repositories     = ["${artifactory_local_repository.docker_stg_local.key}"]
+    repositories = ["${artifactory_local_repository.docker_stg_local.key}"]
 
     actions = {
 
@@ -159,7 +159,7 @@ resource "artifactory_permission_target" "bot_read_docker_prod_local" {
   name = "bot-read-docker-prod-local"
 
   repo = {
-    repositories     = ["${artifactory_local_repository.docker_prod_local.key}"]
+    repositories = ["${artifactory_local_repository.docker_prod_local.key}"]
 
     actions = {
 
@@ -177,7 +177,7 @@ resource "artifactory_permission_target" "bot_promote_docker_to_stg_local" {
   name = "bot-prmote-docker-to-stg-local"
 
   repo = {
-    repositories     = ["${artifactory_local_repository.docker_stg_local.key}"]
+    repositories = ["${artifactory_local_repository.docker_stg_local.key}"]
 
     actions = {
 
@@ -195,7 +195,7 @@ resource "artifactory_permission_target" "bot_promote_docker_to_prod_local" {
   name = "bot-prmote-docker-to-prod-local"
 
   repo = {
-    repositories     = ["${artifactory_local_repository.docker_prod_local.key}"]
+    repositories = ["${artifactory_local_repository.docker_prod_local.key}"]
 
     actions = {
 
