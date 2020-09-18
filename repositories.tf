@@ -16,13 +16,23 @@ resource "artifactory_local_repository" "docker_dev_local" {
   max_unique_tags    = 10
 }
 
+resource "artifactory_local_repository" "docker_stg_local" {
+  key                = "docker-stg-local"
+  package_type       = "docker"
+  description        = "Repo for promoting images from dev for using in stg environments"
+  notes              = "This repo should be pruned to avoid maintaining old images."
+  docker_api_version = "V2"
+  max_unique_tags    = 10
+}
+
+
 resource "artifactory_local_repository" "docker_prod_local" {
   key                = "docker-prod-local"
   package_type       = "docker"
-  description        = "Repo for uploading images to for dev (non-prod environments)"
-  notes              = "This repo should be pruned to avoid maintaining old images."
+  description        = "Repo for promoting images from stg for using in prod environments"
+  notes              = "This repo should be not pruned as it is a record of what is in prod."
   docker_api_version = "V2"
-  max_unique_tags    = 0
+  max_unique_tags    = 10
 }
 
 # Create a new Artifactory remote repository called my-remote
@@ -44,6 +54,7 @@ resource "artifactory_virtual_repository" "docker_virtual" {
   default_deployment_repo = "${artifactory_local_repository.docker_dev_local.key}"
   repositories = [
     "${artifactory_local_repository.docker_dev_local.key}",
+    "${artifactory_local_repository.docker_stg_local.key}",
     "${artifactory_local_repository.docker_prod_local.key}",
     "${artifactory_remote_repository.docker_remote.key}"
   ]
