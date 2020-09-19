@@ -1,9 +1,3 @@
-resource "artifactory_group" "admin_bot_group" {
-  name             = "bots"
-  description      = "Admin bot access group, for configuring Artifactory."
-  admin_privileges = true
-}
-
 resource "artifactory_group" "read_docker_all" {
   name             = "read-docker-all"
   description      = "Read only access to all docker repos, meant to be used by developers to pull down images from all docker repos."
