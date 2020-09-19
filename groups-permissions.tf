@@ -60,6 +60,7 @@ resource "artifactory_group" "bot_promote_docker_to_prod_local" {
   auto_join        = false
 }
 
+# https://github.com/atlassian/terraform-provider-artifactory/blob/master/website/docs/r/artifactory_permission_target.html.markdown
 resource "artifactory_permission_target" "developer_read_docker_all" {
   name = "developer-read-docker-all"
 
@@ -94,7 +95,7 @@ resource "artifactory_permission_target" "bot_deploy_docker_dev_local" {
       groups = [
         {
           name        = "${artifactory_group.bot_deploy_docker_dev_local.name}"
-          permissions = ["read", "write"]
+          permissions = ["read", "write", "annotate"]
         },
       ]
     }
@@ -112,7 +113,7 @@ resource "artifactory_permission_target" "bot_download_docker_remote" {
       groups = [
         {
           name        = "${artifactory_group.bot_download_docker_remote.name}"
-          permissions = ["read", "write"]
+          permissions = ["read", "write", "annotate"]
         },
       ]
     }
@@ -184,7 +185,7 @@ resource "artifactory_permission_target" "bot_promote_docker_to_stg_local" {
       groups = [
         {
           name        = "${artifactory_group.bot_promote_docker_to_stg_local.name}"
-          permissions = ["read"]
+          permissions = ["read", "write", "annotate"]
         },
       ]
     }
@@ -202,7 +203,7 @@ resource "artifactory_permission_target" "bot_promote_docker_to_prod_local" {
       groups = [
         {
           name        = "${artifactory_group.bot_promote_docker_to_prod_local.name}"
-          permissions = ["read"]
+          permissions = ["read", "write", "annotate"]
         },
       ]
     }
