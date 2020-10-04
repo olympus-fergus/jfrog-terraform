@@ -18,9 +18,9 @@ resource "artifactory_local_repository" "docker_dev_local" {
 
 # https://github.com/atlassian/terraform-provider-artifactory/blob/master/website/docs/r/artifactory_virtual_repository.html.markdown
 resource "artifactory_virtual_repository" "docker_dev_virtual" {
-  key                     = "docker-dev-virtual"
-  package_type            = "docker"
-  description             = "Virtual repo for all images to be downloaded from for dev."
+  key          = "docker-dev-virtual"
+  package_type = "docker"
+  description  = "Virtual repo for all images to be downloaded from for dev."
   repositories = [
     "${artifactory_local_repository.docker_dev_local.key}",
     "${artifactory_remote_repository.docker_remote.key}"
@@ -37,9 +37,9 @@ resource "artifactory_local_repository" "docker_stg_local" {
 }
 
 resource "artifactory_virtual_repository" "docker_stg_virtual" {
-  key                     = "docker-stg-virtual"
-  package_type            = "docker"
-  description             = "Virtual repo for all images to be downloaded from for stg."
+  key          = "docker-stg-virtual"
+  package_type = "docker"
+  description  = "Virtual repo for all images to be downloaded from for stg."
   repositories = [
     "${artifactory_local_repository.docker_stg_local.key}",
     "${artifactory_remote_repository.docker_remote.key}"
@@ -57,9 +57,9 @@ resource "artifactory_local_repository" "docker_prod_local" {
 }
 
 resource "artifactory_virtual_repository" "docker_prod_virtual" {
-  key                     = "docker-prod-virtual"
-  package_type            = "docker"
-  description             = "Virtual repo for all images to be downloaded from for prod."
+  key          = "docker-prod-virtual"
+  package_type = "docker"
+  description  = "Virtual repo for all images to be downloaded from for prod."
   repositories = [
     "${artifactory_local_repository.docker_prod_local.key}",
     "${artifactory_remote_repository.docker_remote.key}"
