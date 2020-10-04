@@ -70,10 +70,10 @@ The tests are kind of brute force. I wanted testing but wasn't prepared to spend
 * `read-docker-stg-local` can only read from `docker-stg-local`, error thrown for other repos
 * `read-docker-prod-local` can only read from `docker-prod-local`, error thrown for other repos
 
-In the [test file](../test/test-permissions.sh) update the `jfrog_base_url=""` value to whatever your JFrog URL is, do not include http/s.
+This uses the [test file](../test/test-permissions.sh). Pass in your JFrog url and then the token when asked (the token you will need to get from the JFrog UI)
 ```
 # for my user token I use the format username:apiToken
-./test-permissions.sh 
+./test-permissions.sh yoururl.jfrog.io
 'user token : ' user_token
 
 ```
