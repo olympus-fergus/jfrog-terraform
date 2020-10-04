@@ -5,9 +5,9 @@ resource "artifactory_group" "read_docker_all" {
   auto_join        = false
 }
 
-resource "artifactory_group" "deploy_docker_dev_local" {
-  name             = "deploy-docker-dev-local"
-  description      = "Access group for deploy access to docker-dev-local, used by the build server to upload docker builds to dev-local."
+resource "artifactory_group" "upload_docker_dev_local" {
+  name             = "upload-docker-dev-local"
+  description      = "Access group for upload access to docker-dev-local, used by the build server to upload docker builds to dev-local."
   admin_privileges = false
   auto_join        = false
 }
@@ -64,7 +64,7 @@ resource "artifactory_permission_target" "read_docker_all" {
       "${artifactory_local_repository.docker_stg_local.key}",
       "${artifactory_local_repository.docker_prod_local.key}",
       "${artifactory_remote_repository.docker_remote.key}",
-    "${artifactory_virtual_repository.docker_virtual.key}", ]
+    "${artifactory_virtual_repository.docker_all_virtual.key}", ]
 
     actions = {
 
@@ -88,7 +88,7 @@ resource "artifactory_permission_target" "deploy_docker_dev_local" {
 
       groups = [
         {
-          name        = "${artifactory_group.deploy_docker_dev_local.name}"
+          name        = "${artifactory_group.upload_docker_dev_local.name}"
           permissions = ["read", "write", "annotate"]
         },
       ]
