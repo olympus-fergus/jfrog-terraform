@@ -83,3 +83,6 @@ This uses the [test file](../test/test-permissions.sh). Pass in your JFrog url a
 [JFrog talk on pipeline promotion](https://jfrog.com/shownote/container-promotion-docker-chicago-01-20/)
 [JFrog CLI](https://www.jfrog.com/confluence/display/CLI/CLI+for+JFrog+Artifactory#CLIforJFrogArtifactory-PromotingDockerImages)
 [Promoting docker images CLI](https://www.jfrog.com/confluence/display/JFROG/Artifactory+REST+API#ArtifactoryRESTAPI-PromoteDockerImage)
+
+## TODO
+Upgrade to Terraform 0.13
