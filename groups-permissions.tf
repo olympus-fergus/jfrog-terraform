@@ -201,7 +201,8 @@ resource "artifactory_permission_target" "read_docker_dev_virtual" {
   name = "read-docker-dev-virtual"
 
   repo = {
-    repositories = ["${artifactory_virtual_repository.docker_dev_virtual.key}"]
+    repositories = ["${artifactory_virtual_repository.docker_dev_virtual.key}",
+      "${artifactory_local_repository.docker_dev_local.key}"]
 
     actions = {
 
@@ -219,7 +220,8 @@ resource "artifactory_permission_target" "read_docker_stg_virtual" {
   name = "read-docker-stg-virtual"
 
   repo = {
-    repositories = ["${artifactory_virtual_repository.docker_stg_virtual.key}"]
+    repositories = ["${artifactory_virtual_repository.docker_stg_virtual.key}",
+      "${artifactory_local_repository.docker_stg_local.key}"]
 
     actions = {
 
@@ -237,7 +239,8 @@ resource "artifactory_permission_target" "read_docker_prod_virtual" {
   name = "read-docker-prod-virtual"
 
   repo = {
-    repositories = ["${artifactory_virtual_repository.docker_prod_virtual.key}"]
+    repositories = ["${artifactory_virtual_repository.docker_prod_virtual.key}",
+      "${artifactory_local_repository.docker_prod_local.key}"]
 
     actions = {
 
