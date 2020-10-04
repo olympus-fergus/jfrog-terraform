@@ -22,7 +22,7 @@ prod_repo=${jfrog_base_url}/docker-prod-local
 
 # users
 developer_identifier="read-docker-all"
-bot_deployer="deploy-docker-dev-local"
+bot_deployer="upload-docker-dev-local"
 bot_downloader="download-docker-remote"
 bot_reader_dev="read-docker-dev-local"
 bot_reader_stg="read-docker-stg-local"
