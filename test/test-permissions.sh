@@ -8,21 +8,17 @@ set +e # continue on error!
 # read the user token
 read -sp "user token : " user_token
 
-echo $1
 # JFrog URL to get the token from
-jfrog_base_url=$1
+jfrog_base_url=""
 jfrog_account="https://${jfrog_base_url}"
 jfrog_artifactory="${jfrog_account}/artifactory"
 token_url="${jfrog_artifactory}/api/security/token"
 
 # repositories
-virtual_repo=${jfrog_base_url}/docker-all-virtual
+virtual_repo=${jfrog_base_url}/docker-virtual
 dev_repo=${jfrog_base_url}/docker-dev-local
 stg_repo=${jfrog_base_url}/docker-stg-local
 prod_repo=${jfrog_base_url}/docker-prod-local
-virtual_dev_repo=${jfrog_base_url}/docker-dev-virtual
-virtual_stg_repo=${jfrog_base_url}/docker-stg-virtual
-virtual_prod_repo=${jfrog_base_url}/docker-prod-virtual
 
 # users
 developer_identifier="read-docker-all"
@@ -89,7 +85,7 @@ jfrog rt docker-promote busybox docker-dev-local docker-stg-local --source-tag $
 if [ $? -eq 0 ]; then
     echo echo ${username} able to write to docker-stg-local, this is good
 else
-    echo ${username} unable to write to docker-stg-local, this is bad **********************
+    echo ${username} unable to write to docker-stg-local, this is bad
     exit
 fi
 
@@ -97,7 +93,7 @@ fi
 jfrog rt docker-promote busybox docker-stg-local docker-prod-local --source-tag $docker_tag --access-token=$access_token --url=${jfrog_artifactory} &> /dev/null
 
 if [ $? -eq 0 ]; then
-    echo echo ${username} able to write to docker-prod-local, this is bad **********************
+    echo echo ${username} able to write to docker-prod-local, this is bad
     exit
 else
     echo ${username} unable to write to docker-prod-local, this is good
@@ -114,7 +110,7 @@ jfrog rt docker-promote busybox docker-stg-local docker-prod-local --source-tag 
 if [ $? -eq 0 ]; then
     echo echo ${username} able to write to docker-prod-local, this is good
 else
-    echo ${username} unable to write to docker-prod-local, this is bad **********************
+    echo ${username} unable to write to docker-prod-local, this is bad
     exit
 fi
 
@@ -122,7 +118,7 @@ fi
 jfrog rt docker-promote busybox docker-prod-local docker-stg-local --source-tag $docker_tag --access-token=$access_token --url=# now try to promote with the promote prod group, should succeed &> /dev/null
 
 if [ $? -eq 0 ]; then
-    echo echo ${username} able to write to docker-stg-local, this is bad **********************
+    echo echo ${username} able to write to docker-stg-local, this is bad
     exit
 else
     echo ${username} unable to write to docker-stg-local, this is good
@@ -153,7 +149,7 @@ docker pull $virtual_repo/busybox:$docker_tag
 docker pull $dev_repo/busybox:$docker_tag
 docker pull $stg_repo/busybox:$docker_tag
 if [ $? -eq 0 ]; then
-    echo echo ${username} able to read from docker-stg-local, this is bad **********************
+    echo echo ${username} able to read from docker-stg-local, this is bad
     exit
 else
     echo ${username} unable to read from docker-stg-local, this is good
@@ -161,7 +157,7 @@ fi
 
 docker pull $prod_repo/busybox:$docker_tag
 if [ $? -eq 0 ]; then
-    echo echo ${username} able to read from docker-prod-local, this is bad **********************
+    echo echo ${username} able to read from docker-prod-local, this is bad
     exit
 else
     echo ${username} unable to read read docker-prod-local, this is good
@@ -176,7 +172,7 @@ docker_login
 docker pull ${virtual_repo}/busybox:${docker_tag}
 docker pull ${dev_repo}/busybox:${docker_tag}
 if [ $? -eq 0 ]; then
-    echo echo ${username} able to read from docker-dev-local, this is bad **********************
+    echo echo ${username} able to read from docker-dev-local, this is bad
     exit
 else
     echo ${username} unable to read from docker-dev-local, this is good
@@ -185,12 +181,12 @@ docker pull ${stg_repo}/busybox:${docker_tag}
 if [ $? -eq 0 ]; then
     echo echo ${username} able to read from docker-stg-local, this is good
 else
-    echo ${username} unable to read from docker-stg-local, this is bad **********************
+    echo ${username} unable to read from docker-stg-local, this is bad
     exit
 fi
 docker pull ${prod_repo}/busybox:${docker_tag}
 if [ $? -eq 0 ]; then
-    echo echo ${username} able to read to docker-prod-local, this is bad **********************
+    echo echo ${username} able to read to docker-prod-local, this is bad
     exit
 else
     echo ${username} unable to write to docker-prod-local, this is good
@@ -205,14 +201,14 @@ docker_login
 docker pull ${virtual_repo}/busybox:${docker_tag}
 docker pull ${dev_repo}/busybox:${docker_tag}
 if [ $? -eq 0 ]; then
-    echo echo ${username} able to read from docker-dev-local, this is bad **********************
+    echo echo ${username} able to read from docker-dev-local, this is bad
     exit
 else
     echo ${username} unable to read from docker-dev-local, this is good
 fi
 docker pull ${stg_repo}/busybox:${docker_tag}
 if [ $? -eq 0 ]; then
-    echo echo ${username} able to read from docker-stg-local, this is bad **********************
+    echo echo ${username} able to read from docker-stg-local, this is bad
     exit
 else
     echo ${username} unable to read from docker-stg-local, this is good
@@ -221,7 +217,7 @@ docker pull ${prod_repo}/busybox:${docker_tag}
 if [ $? -eq 0 ]; then
     echo echo ${username} able to read to docker-prod-local, this is good
 else
-    echo ${username} unable to write to docker-prod-local, this is bad **********************
+    echo ${username} unable to write to docker-prod-local, this is bad
     exit
 fi
 

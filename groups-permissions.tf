@@ -19,21 +19,21 @@ resource "artifactory_group" "download_docker_remote" {
   auto_join        = false
 }
 
-resource "artifactory_group" "read_docker_dev" {
+resource "artifactory_group" "read_docker_dev_local" {
   name             = "read-docker-dev-local"
   description      = "Access group for read only access to the docker-dev-local repo, used by the cluster to ensure images are downloaded from the correct repo."
   admin_privileges = false
   auto_join        = false
 }
 
-resource "artifactory_group" "read_docker_stg" {
+resource "artifactory_group" "read_docker_stg_local" {
   name             = "read-docker-stg-local"
   description      = "Access group for read only access to the docker-stg-local repo, used by the cluster to ensure images are downloaded from the correct repo."
   admin_privileges = false
   auto_join        = false
 }
 
-resource "artifactory_group" "read_docker_prod" {
+resource "artifactory_group" "read_docker_prod_local" {
   name             = "read-docker-prod-local"
   description      = "Access group for read only access to the docker-prod-local repo, used by the cluster to ensure images are downloaded from the correct repo."
   admin_privileges = false
@@ -114,18 +114,17 @@ resource "artifactory_permission_target" "download_docker_remote" {
   }
 }
 
-resource "artifactory_permission_target" "read_docker_dev" {
+resource "artifactory_permission_target" "read_docker_dev_local" {
   name = "read-docker-dev-local"
 
   repo = {
-    repositories = ["${artifactory_local_repository.docker_dev_local.key}",
-    "${artifactory_virtual_repository.docker_all_virtual.key}"]
+    repositories = ["${artifactory_local_repository.docker_dev_local.key}"]
 
     actions = {
 
       groups = [
         {
-          name        = "${artifactory_group.read_docker_dev.name}"
+          name        = "${artifactory_group.read_docker_dev_local.name}"
           permissions = ["read"]
         },
         {
@@ -137,18 +136,17 @@ resource "artifactory_permission_target" "read_docker_dev" {
   }
 }
 
-resource "artifactory_permission_target" "read_docker_stg" {
+resource "artifactory_permission_target" "read_docker_stg_local" {
   name = "read-docker-stg-local"
 
   repo = {
-    repositories = ["${artifactory_local_repository.docker_stg_local.key}",
-    "${artifactory_virtual_repository.docker_all_virtual.key}"]
+    repositories = ["${artifactory_local_repository.docker_stg_local.key}"]
 
     actions = {
 
       groups = [
         {
-          name        = "${artifactory_group.read_docker_stg.name}"
+          name        = "${artifactory_group.read_docker_stg_local.name}"
           permissions = ["read"]
         },
         {
@@ -164,14 +162,13 @@ resource "artifactory_permission_target" "read_docker_prod_local" {
   name = "read-docker-prod-local"
 
   repo = {
-    repositories = ["${artifactory_local_repository.docker_prod_local.key}",
-    "${artifactory_virtual_repository.docker_all_virtual.key}"]
+    repositories = ["${artifactory_local_repository.docker_prod_local.key}"]
 
     actions = {
 
       groups = [
         {
-          name        = "${artifactory_group.read_docker_prod.name}"
+          name        = "${artifactory_group.read_docker_prod_local.name}"
           permissions = ["read"]
         },
       ]
