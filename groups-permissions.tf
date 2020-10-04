@@ -119,7 +119,7 @@ resource "artifactory_permission_target" "read_docker_dev" {
 
   repo = {
     repositories = ["${artifactory_local_repository.docker_dev_local.key}",
-      "${artifactory_virtual_repository.docker_virtual.key}"]
+    "${artifactory_virtual_repository.docker_virtual.key}"]
 
     actions = {
 
@@ -142,7 +142,7 @@ resource "artifactory_permission_target" "read_docker_stg" {
 
   repo = {
     repositories = ["${artifactory_local_repository.docker_stg_local.key}",
-      "${artifactory_virtual_repository.docker_virtual.key}"]
+    "${artifactory_virtual_repository.docker_virtual.key}"]
 
     actions = {
 
@@ -165,7 +165,7 @@ resource "artifactory_permission_target" "read_docker_prod_local" {
 
   repo = {
     repositories = ["${artifactory_local_repository.docker_prod_local.key}",
-      "${artifactory_virtual_repository.docker_virtual.key}"]
+    "${artifactory_virtual_repository.docker_virtual.key}"]
 
     actions = {
 
