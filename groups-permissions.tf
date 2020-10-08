@@ -19,27 +19,6 @@ resource "artifactory_group" "download_docker_remote" {
   auto_join        = false
 }
 
-//resource "artifactory_group" "read_docker_dev_local" {
-//  name             = "read-docker-dev-local"
-//  description      = "Access group for read only access to the docker-dev-local repo, used by the cluster to ensure images are downloaded from the correct repo."
-//  admin_privileges = false
-//  auto_join        = false
-//}
-//
-//resource "artifactory_group" "read_docker_stg_local" {
-//  name             = "read-docker-stg-local"
-//  description      = "Access group for read only access to the docker-stg-local repo, used by the cluster to ensure images are downloaded from the correct repo."
-//  admin_privileges = false
-//  auto_join        = false
-//}
-//
-//resource "artifactory_group" "read_docker_prod_local" {
-//  name             = "read-docker-prod-local"
-//  description      = "Access group for read only access to the docker-prod-local repo, used by the cluster to ensure images are downloaded from the correct repo."
-//  admin_privileges = false
-//  auto_join        = false
-//}
-
 resource "artifactory_group" "read_docker_dev_virtual" {
   name             = "read-docker-dev-virtual"
   description      = "Access group for read only access to the docker-dev-virtual repo, used by the cluster to ensure images are downloaded from the correct repo."
@@ -144,10 +123,6 @@ resource "artifactory_permission_target" "read_docker_dev_local" {
     actions = {
 
       groups = [
-        //        {
-        //          name        = "${artifactory_group.read_docker_dev_local.name}"
-        //          permissions = ["read"]
-        //        },
         {
           name        = "${artifactory_group.promote_docker_to_stg_local.name}"
           permissions = ["read"]
@@ -166,10 +141,6 @@ resource "artifactory_permission_target" "read_docker_stg_local" {
     actions = {
 
       groups = [
-        //        {
-        //          name        = "${artifactory_group.read_docker_stg_local.name}"
-        //          permissions = ["read"]
-        //        },
         {
           name        = "${artifactory_group.promote_docker_to_prod_local.name}"
           permissions = ["read"]
@@ -179,24 +150,7 @@ resource "artifactory_permission_target" "read_docker_stg_local" {
   }
 }
 
-//resource "artifactory_permission_target" "read_docker_prod_local" {
-//  name = "read-docker-prod-local"
-//
-//  repo = {
-//    repositories = ["${artifactory_local_repository.docker_prod_local.key}"]
-//
-//    actions = {
-//
-//      groups = [
-//        {
-//          name        = "${artifactory_group.read_docker_prod_local.name}"
-//          permissions = ["read"]
-//        },
-//      ]
-//    }
-//  }
-//}
-
+# read only to docker-dev-local and virtual
 resource "artifactory_permission_target" "read_docker_dev_virtual" {
   name = "read-docker-dev-virtual"
 
@@ -216,6 +170,7 @@ resource "artifactory_permission_target" "read_docker_dev_virtual" {
   }
 }
 
+# read only to docker-stg-local and virtual
 resource "artifactory_permission_target" "read_docker_stg_virtual" {
   name = "read-docker-stg-virtual"
 
@@ -235,6 +190,7 @@ resource "artifactory_permission_target" "read_docker_stg_virtual" {
   }
 }
 
+# read only to docker-prod-local and virtual
 resource "artifactory_permission_target" "read_docker_prod_virtual" {
   name = "read-docker-prod-virtual"
 
