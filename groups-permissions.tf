@@ -123,10 +123,6 @@ resource "artifactory_permission_target" "read_docker_dev_local" {
     actions = {
 
       groups = [
-        //        {
-        //          name        = "${artifactory_group.read_docker_dev_local.name}"
-        //          permissions = ["read"]
-        //        },
         {
           name        = "${artifactory_group.promote_docker_to_stg_local.name}"
           permissions = ["read"]
@@ -145,10 +141,6 @@ resource "artifactory_permission_target" "read_docker_stg_local" {
     actions = {
 
       groups = [
-        //        {
-        //          name        = "${artifactory_group.read_docker_stg_local.name}"
-        //          permissions = ["read"]
-        //        },
         {
           name        = "${artifactory_group.promote_docker_to_prod_local.name}"
           permissions = ["read"]
