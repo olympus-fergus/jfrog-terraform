@@ -6,13 +6,13 @@ set -o nounset
 set +e # continue on error!
 
 # read the user token
-read -sp "user token : " user_token
-
+#read -sp "user token : " user_token
+user_token="eyJ2ZXIiOiIyIiwidHlwIjoiSldUIiwiYWxnIjoiUlMyNTYiLCJraWQiOiJndm5yVWJZb1FfXzZzOTc3eVNoTkdHdjE3anI4bkk0UU5oUXBIRHFjVkZZIn0.eyJzdWIiOiJqZmZlQDAwMFwvdXNlcnNcL2Zlcmd1cy5tYWNkZXJtb3RAb3NsLmNvbSIsInNjcCI6ImFwcGxpZWQtcGVybWlzc2lvbnNcL2FkbWluIGFwaToqIiwiYXVkIjoiKkAqIiwiaXNzIjoiamZmZUAwMDAiLCJpYXQiOjE2MjY2OTU0MDMsImp0aSI6ImEyNDY1ODE5LTk1YTEtNDc4Ny1iNDNhLTkxNDU0NWQ2NjAyNCJ9.ZHFlkgnw17Ttxkidgq9ugD_D1ABu2qlzsEr-N50s2TUpoZzkeLHNCagu3v-kyrK4RGCFgr9ebUBoYRTVsXf5sevq81Y6yUxOkPtZxvH0ZfASYW9r4Lq9gHmRw1E1UN81srkiRya0wf4tFYeFIm27KZhFPcLvvXjRut75SmrCxhUMfbDqxoa9XtqX4AUl9AuEA7nvrbQr-TCa2mx1j6a3dlgFSOOfqGH-L9biKZ9k5XvsAj5VbtnKjEjbd8qHsW-82z4lzGD8BEVZofC4c5Dc0hgNYAX-Wx8oXP-lJY95tkuUm8z2ZSMDbu5G7SpXRVLzTK-avyjARIl9DrFSAnSzmQ"
 # JFrog URL
 jfrog_base_url=$1
 jfrog_account="https://${jfrog_base_url}"
 jfrog_artifactory="${jfrog_account}/artifactory"
-token_url="${jfrog_artifactory}/api/security/token"
+token_url="${jfrog_artifactory}/access/api/v1/tokens"
 
 # repositories
 virtual_repo=${jfrog_base_url}/docker-all-virtual
@@ -44,6 +44,9 @@ docker_tag=$(echo $RANDOM | tr '[0-9]' '[a-z]')
 
 get_access_token () {
   curl -u ${user_token} -d ${username} -d ${scope} -X POST ${token_url} | jq -r '.access_token'
+
+  curl -H "Authorization: Bearer ${user_token}" -XPOST "http://localhost:8082/access/api/v1/tokens" -d ${scope}
+
 }
 
 docker_login () {
